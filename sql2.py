@@ -1,14 +1,15 @@
 # solutions.py
-"""Volume 3: SQL 2.
-<Name>
-<Class>
-<Date>
+"""
+SQL
+Jake Callahan
+
+Since SQL databases contain multiple tables, retrieving information about the
+data can be complicated. In this program I demonstrate joins, grouping, and other
+advanced SQL query concepts to facilitate rapid data retrieval.
 """
 import sqlite3 as sql
 
-
-# Problem 1
-def prob1(db_file="students.db"):
+def get_Bs(db_file="students.db"):
     """Query the database for the list of the names of students who have a
     'B' grade in any course. Return the list.
 
@@ -27,13 +28,11 @@ def prob1(db_file="students.db"):
 
         return names
 
-
-# Problem 2
-def prob2(db_file="students.db"):
+def get_calc_grades(db_file="students.db"):
     """Query the database for all tuples of the form (Name, MajorName, Grade)
     where 'Name' is a student's name and 'Grade' is their grade in Calculus.
     Only include results for students that are actually taking Calculus, but
-    be careful not to exclude students who haven't declared a major.
+    don't exclude students who haven't declared a major.
 
     Parameters:
         db_file (str): the name of the database to connect to.
@@ -52,8 +51,7 @@ def prob2(db_file="students.db"):
 
     return query
 
-# Problem 3
-def prob3(db_file="students.db"):
+def get_course_nums(db_file="students.db"):
     """Query the database for the list of the names of courses that have at
     least 5 students enrolled in them.
 
@@ -72,9 +70,7 @@ def prob3(db_file="students.db"):
                     "HAVING COUNT(*) >= 5").fetchall()
         return query
 
-
-# Problem 4
-def prob4(db_file="students.db"):
+def get_major_nums(db_file="students.db"):
     """Query the given database for tuples of the form (MajorName, N) where N
     is the number of students in the specified major. Sort the results in
     descending order by the counts N, then in alphabetic order by MajorName.
@@ -94,9 +90,7 @@ def prob4(db_file="students.db"):
                     "ORDER BY num_courses DESC, MI.MajorName ASC").fetchall()
         return query
 
-
-# Problem 5
-def prob5(db_file="students.db"):
+def get_C_names(db_file="students.db"):
     """Query the database for tuples of the form (StudentName, MajorName) where
     the last name of the specified student begins with the letter C.
 
@@ -114,9 +108,7 @@ def prob5(db_file="students.db"):
                     "WHERE StudentName LIKE '% C%' ").fetchall()
         return query
 
-
-# Problem 6
-def prob6(db_file="students.db"):
+def get_GPAs(db_file="students.db"):
     """Query the database for tuples of the form (StudentName, N, GPA) where N
     is the number of courses that the specified student is in and 'GPA' is the
     grade point average of the specified student according to the following
